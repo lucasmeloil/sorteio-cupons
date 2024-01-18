@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Cupom para Sorteio</title>
+</head>
+<body>
+
+  <h1>Cadastre Seo Cupom</h1>
+
+  <form id="cupomForm">
+    <!-- Dados do Cupom -->
+    <fieldset>
+      <legend>Dados do Cupom</legend>
+      <label for="numeroCupom">Número do Cupom:</label><br>
+      <input type="text" id="numeroCupom" name="numeroCupom" required><br><br>
+
+      <label for="qrcode">QR Code:</label><br>
+      <button type="button" id="scanQRCode" class="btn btn-danger">Escanear QR Code</button><br><br>
+    </fieldset>
+
+    <!-- Dados do Usuário -->
+    <fieldset>
+      <legend>Dados do Usuário</legend>
+      <label for="nomeCompleto">Nome Completo:</label><br>
+      <input type="text" id="nomeCompleto" name="nomeCompleto" required><br><br>
+
+      <label for="telefone">Telefone:</label><br>
+      <input type="text" id="telefone" name="telefone" required><br><br>
+
+      <label for="cpf">CPF:</label><br>
+      <input type="text" id="cpf" name="cpf" required><br><br>
+
+      <label for="endereco">Endereço:</label><br>
+      <textarea id="endereco" name="endereco" required></textarea><br><br>
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Cadastrar Cupom</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/quagga"></script>
+  <script>
+    const cupomForm = document.getElementById('cupomForm');
+    const scanQRCodeBtn = document.getElementById('scanQRCode');
+
+    scanQRCodeBtn.addEventListener('click', function() {
+      Quagga.init({
+        inputStream: {
+          name: "Live",
+          type: "LiveStream",
+          target: document.querySelector('#cupomForm'), // Onde o vídeo será exibido (neste caso, dentro do formulário)
+          constraints: {
+            facingMode: "environment", // Usar a câmera traseira (se disponível)
+          },
+        },
+        decoder: {
+          readers: ["code_128_reader"] // Pode ser alterado para o formato do seu QR code
+        },
+      }, function(err) {
+        if (err) {
+          console.error(err);
+          alert('Erro ao iniciar a leitura do QR code.');
+          return;
+        }
+
+        Quagga.start();
+        Quagga.onDetected(data => {
+          const numeroCupom = data.codeResult.code;
+          console.log('QR Code lido:', numeroCupom);
+          document.getElementById('numeroCupom').value = numeroCupom;
+          Quagga.stop();
+        });
+      });
+    });
+
+    cupomForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Obter dados do formulário
+      const numeroCupom = document.getElementById('numeroCupom').value;
+      const nomeCompleto = document.getElementById('nomeCompleto').value;
+      const telefone = document.getElementById('telefone').value;
+      const cpf = document.getElementById('cpf').value;
+      const endereco = document.getElementById('endereco').value;
+
+      // Aqui você pode fazer algo com esses dados, como enviar para o servidor
+      console.log('Número do Cupom:', numeroCupom);
+      console.log('Nome Completo:', nomeCompleto);
+      console.log('Telefone:', telefone);
+      console.log('CPF:', cpf);
+      console.log('Endereço:', endereco);
+
+      // Limpar o formulário após o envio
+      cupomForm.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+
+
+<div class="container">
+  <h1 class="sorteio-cupons">NEXUS SORTEIO</h1>
+  <hr>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-danger" (click)="realizarSorteio()">Realizar Sorteio</button>
+  </div>
+
+  <br>
+
+  <!-- Exibição do número sorteado -->
+  <div *ngIf="numeroSorteado" class="numero-sorteado">
+    <p class="numero">{{ numeroSorteado }}</p>
+    <p class="comemoracao">Parabéns!</p>
+  </div>
+
+  <!-- Exibição dos cupons gerados -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let cupom of cupons">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cupom de Número: {{ cupom.numero }}</h5>
+          <div class="qr-code">
+            <img class="carro" src="../../assets/img/gol2023-r.png" alt="Carro">
+            <img [src]="cupom.qrCodeUrl" alt="QR Code do Cupom">
+            <div class="cadastro-qrcode-container">
+              <h5 class="cadastro-qrcode">Cadastre o cupom pelo Qr Code </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão para realizar o sorteio -->
+</div>

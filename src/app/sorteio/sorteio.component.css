@@ -1,0 +1,116 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.qr-code img {
+  max-width: 14%;
+  height: auto;
+  margin-left: 70%;
+}
+
+.btn-primary {
+  margin-top: 20px;
+}
+
+.numero-sorteado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.numero {
+  margin-bottom: 10px;
+  color: green;
+  animation: bounce 0.8s ease-in-out;
+}
+
+.comemoracao {
+  color: blue;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.sorteio-cupons{
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2rem;
+  font-weight: bold;}
+
+
+
+
+  /* Estilos para o card de sorteio */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.qr-code {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.carro {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.cadastro-qrcode-container {
+  background-color: #b6b6b6;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 40%;
+  transform: translateX(-50%);
+  font-size: 14px;
+}
